@@ -15,5 +15,10 @@ class Notification extends Model
         'status',
         'message',
     ];
+    
+    public function fromUser()
+    {
+        return $this->belongsTo(User::class, 'from_user_id');
+    }
 
 }
