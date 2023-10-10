@@ -14,10 +14,13 @@ class SearchController extends Controller
         // `areas` カラムからクエリにマッチするデータを検索
         $users = User::whereJsonContains('areas', $query)->get();
 
+        // $users = User::where('areas', 'LIKE', "%\"{$query}\"%")->get();
+
+
         if ($users->isEmpty()) {
             return response()->json(['message' => '一致するユーザが見つかりませんでした。']);
         }
-        
+
         return response()->json($users);
     }
 }

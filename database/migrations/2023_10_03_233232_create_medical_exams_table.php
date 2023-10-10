@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('medical_exams', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('notification_id');
+            $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
             $table->integer('age');
             $table->string('gender');
             $table->string('chief_complaint');

@@ -6,6 +6,7 @@ use App\Models\MedicalExam;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
@@ -48,5 +49,14 @@ class UserController extends Controller
 
         $user->update($data);
         return response()->json(['message' => 'Profile updated successfully'], Response::HTTP_OK);
+    }
+
+    public function getUserData(Request $request)
+    {
+        // ログインユーザーの情報を取得
+        $user = Auth::user();
+
+        // ユーザーデータを返す
+        return response()->json($user);
     }
 }

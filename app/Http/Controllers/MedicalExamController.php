@@ -28,7 +28,8 @@ class MedicalExamController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
+            'notification_id' => 'required|integer|exists:notifications,id',
             'age' => 'required|integer',
             'gender' => 'required|string',
             'chief_complaint' => 'required|string',
@@ -36,16 +37,33 @@ class MedicalExamController extends Controller
             'vitals' => 'nullable|string',
         ]);
 
-        MedicalExam::create($data);
-        return redirect()->back()->with('success', 'Medical exam data saved successfully.');
-    }
+        try {
+            $exam = new MedicalExam;
+            $exam->notification_id = $request->notification_id;
+            $exam->age = $request->age;
+            $exam->gender = $request->gender;
+            $exam->chief_complaint = $request->chief_complaint;
+            $exam->medical_history = $request->medical_history;
+            $exam->vitals = $request->vitals;
+            $exam->save();
 
+            return response()->json(['message' => 'Medical exam saved successfully!'], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to save medical exam'], 500);
+        }
+    }
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($notificationId)
     {
-        //
+        $exam = MedicalExam::where('notification_id', $notificationId)->first();
+
+        if (!$exam) {
+            return response()->json(['message' => 'Exam not found'], 404);
+        }
+
+        return response()->json($exam);
     }
 
     /**
