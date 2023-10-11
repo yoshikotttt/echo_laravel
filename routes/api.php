@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MedicalExamController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SkywayController;
 use App\Http\Controllers\UserController;
 
 Route::post('/login', LoginController::class)->name('login');
@@ -33,6 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get-user-data',[UserController::class, 'getUserData']);
 
     Route::put('/notifications/{notification}', [NotificationController::class, 'update']);
+
+    Route::get('/notifications/{notificationId}/skyway-id', [SkywayController::class, 'getSkywayData']);
 
     Route::get('test', function () {
         return response()->json(['message' => 'This is a protected route!']);
