@@ -16,4 +16,10 @@ class MedicalExam extends Model
         'medical_history',
         'vitals'
     ];
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
+
 }
