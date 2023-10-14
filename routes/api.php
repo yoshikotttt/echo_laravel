@@ -37,6 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/notifications/{notificationId}/skyway-id', [SkywayController::class, 'getSkywayData']);
 
+    Route::put('/profile-detail', [UserController::class, 'update']);
+
+
     Route::get('test', function () {
         return response()->json(['message' => 'This is a protected route!']);
     });

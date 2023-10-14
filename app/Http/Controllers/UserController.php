@@ -38,13 +38,12 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'skyway_id' => 'required|string|max:255',
             'role' => 'required|integer',
             'qualification' => 'nullable|string|max:255',
             'qualification_year' => 'nullable|integer',
             'region' => 'nullable|string|max:255',
             'areas' => 'nullable|array',
-            'status' => 'required|boolean',
+
         ]);
 
         $user->update($data);
