@@ -57,7 +57,7 @@ class MedicalExamController extends Controller
      */
     public function show($notificationId)
     {
-        $exam = MedicalExam::where('notification_id', $notificationId)->first();
+        $exam = MedicalExam::with('notification')->where('notification_id', $notificationId)->first();
 
         if (!$exam) {
             return response()->json(['message' => 'Exam not found'], 404);
