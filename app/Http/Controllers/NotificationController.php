@@ -36,7 +36,7 @@ class NotificationController extends Controller
         // to_user_id または from_user_id がログインユーザーの id と一致する通知を取得
         $notifications = Notification::where('to_user_id', $user->id)
             ->orWhere('from_user_id', $user->id)
-            ->with('fromUser') // from_user リレーションを事前に読み込む
+            ->with(['fromUser', 'toUser'])  // from_user リレーションを事前に読み込む
             ->get();
 
         return response()->json($notifications);
