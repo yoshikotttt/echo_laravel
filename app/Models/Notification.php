@@ -14,6 +14,7 @@ class Notification extends Model
         'to_user_id',
         'status',
         'message',
+        'accept_message',
     ];
     
     public function fromUser()

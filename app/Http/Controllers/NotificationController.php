@@ -42,11 +42,27 @@ class NotificationController extends Controller
         return response()->json($notifications);
     }
 
+
+
+    public function show($id)
+    {
+        $notification = Notification::with(['toUser', 'fromUser'])->find($id);
+
+        if (!$notification) {
+            return response()->json(['message' => 'Notification not found.'], 404);
+        }
+
+        return response()->json($notification);
+    }
+
+
+
     public function update(Request $request, Notification $notification)
     {
         // 通知のステータスを更新
         $notification->update([
             'status' => $request->input('status'),
+            'accept_message' => $request->input('accept_message')
         ]);
 
         // 必要な場合、通知を送信する処理をここに追加

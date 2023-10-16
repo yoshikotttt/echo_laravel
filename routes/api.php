@@ -23,15 +23,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/search', [SearchController::class, 'search']);
 
-    Route::post('/notifications', [NotificationController::class, 'store']);
-
-    Route::get('/notifications', [NotificationController::class, 'index']);
-
     Route::post('/medical-exams', [MedicalExamController::class, 'store']);
 
     Route::get('/medical-exams/{notificationId}', [MedicalExamController::class, 'show']);
 
     Route::get('/get-user-data',[UserController::class, 'getUserData']);
+
+    Route::post('/notifications', [NotificationController::class, 'store']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
+
+    Route::get('/notifications/{notification}', [NotificationController::class, 'show']);
 
     Route::put('/notifications/{notification}', [NotificationController::class, 'update']);
 
