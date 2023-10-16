@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
             $table->integer('age');
             $table->string('gender');
-            $table->string('chief_complaint');
-            $table->string('medical_history');
-            $table->string('vitals')->nullable();
+            $table->string('chief_complaint', 1000);
+            $table->string('medical_history', 1000);
+            $table->string('vitals', 1000)->nullable();
             $table->timestamps();
         });
     }

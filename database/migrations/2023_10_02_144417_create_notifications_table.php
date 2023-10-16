@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('from_user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('to_user_id')->constrained('users')->onDelete('cascade');
             $table->tinyInteger('status');
-            $table->string('message')->nullable();
+            $table->string('message', 1000)->nullable();
+            $table->string('accept_message', 1000)->nullable();
             $table->timestamps();
 
             $table->index('from_user_id');

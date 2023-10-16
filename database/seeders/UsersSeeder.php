@@ -25,11 +25,20 @@ class UsersSeeder extends Seeder
             'role' => 0, // 0 for request doctor, 1 for accept doctor
         ]);
 
+        // 2番目の人：依頼医
+        User::create([
+            'name' => 'RequestDoctor2',
+            'email' => 'requestdoc2@example.com',
+            'password' => Hash::make('password'),
+            'skyway_id' => Str::random(16),
+            'role' => 0,
+        ]);
+
         // 受託医
         $regions = ['北海道', '東北', '関東', '中部', '関西', '中国四国', '九州'];
         $areas = ['上腹部', '下腹部', '心臓'];
 
-        for ($i = 2; $i <= 8; $i++) {
+        for ($i = 3; $i <= 9; $i++) {
             User::create([
                 'name' => "AcceptDoctor$i",
                 'email' => "acceptdoc$i@example.com",
