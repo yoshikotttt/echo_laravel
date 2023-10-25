@@ -21,14 +21,16 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+    //医師検索
     Route::get('/search', [SearchController::class, 'search']);
 
+    // *****検査情報*********
     Route::post('/medical-exams', [MedicalExamController::class, 'store']);
 
     Route::get('/medical-exams/{notificationId}', [MedicalExamController::class, 'show']);
 
-    Route::get('/get-user-data',[UserController::class, 'getUserData']);
-
+   
+    // *****通知**********
     Route::post('/notifications', [NotificationController::class, 'store']);
 
     Route::get('/notifications', [NotificationController::class, 'index']);
@@ -37,9 +39,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('/notifications/{notification}', [NotificationController::class, 'update']);
 
+    //skywayのデータ取得
     Route::get('/notifications/{notificationId}/skyway-id', [SkywayController::class, 'getSkywayData']);
 
+    //*****ユーザー情報********
     Route::put('/profile-detail', [UserController::class, 'update']);
+
+    Route::get('/get-user-data', [UserController::class, 'getUserData']);
 
 
     Route::get('test', function () {
