@@ -27,5 +27,5 @@
 
 ## 開発者への注意点
 
-- このAPIは、https://github.com/yoshikotttt/echo_reactリアルタイム通信診断アプリと密接に連携して動作します。
+- このAPIは、https://github.com/yoshikotttt/echo_react リアルタイム通信診断アプリと密接に連携して動作します。
 - SkywayのPeer IDは新規ユーザー登録時に自動で生成されるため、Skywayの設定やその他の関連情報を適切に設定する必要があります。
