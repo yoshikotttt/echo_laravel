@@ -1,0 +1,23 @@
+name: PHP Lint
+
+on: [pull_request]
+
+jobs:
+  php_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check Docker version
+        run: docker --version
+
+      - name: Check Docker Compose version
+        run: docker compose --version
+
+      - name: Set up Docker Compose 
+        run: docker compose up -d
+
+      - name: Set up Docker Compose 
+        run: docker compose down
+
