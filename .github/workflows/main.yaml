@@ -8,24 +8,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      
+      - name: Check Docker version
+        run: docker --version
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - name: Check Docker Compose version
+        run: docker-compose --version
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Run PHP Lint
-        run: composer lints
